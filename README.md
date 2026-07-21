@@ -142,10 +142,11 @@ Geometry • ETA • Directions
 ---
 
 
-## 📸 Demo
+## 🎥 Demo
 
-![alt text](image.png)
+[![Smart Route Optimization System](docs/route_system.png)](https://drive.google.com/file/d/1ihGuB1abwQElcpSGMv2fycNTPMvCSLLZ/view?usp=sharing)
 
+**Click the image above to watch the full demo.**
 - Interactive Map
 - Route Optimization
 - Route History
