@@ -1,81 +1,209 @@
 # 🚀 Smart Route Optimization System
 
-An interactive web application that computes the optimal route between multiple locations using graph search algorithms.
+A full-stack GIS-based route optimization system that computes optimized routes across Cairo using real road-network data from OpenStreetMap.
 
-## 📌 Overview
+The application combines graph algorithms, interactive maps, and modern web technologies to provide route optimization, navigation, and route management similar to a lightweight GPS application.
 
-This project allows users to:
+---
 
-* Select a start location and multiple destinations
-* Visualize routes on an interactive map
-* Compute optimized paths using backend algorithms
-* View total distance and execution time
+## ✨ Features
 
-## 🧠 Key Features
+### 🗺️ Route Planning
+- Select a start location and multiple destinations
+- Optimize routes using either:
+  - Greedy Algorithm (fast heuristic)
+  - Traveling Salesman Problem (TSP) approximation
+- Interactive map visualization
+- Animated route rendering
+- Turn-by-turn directions
+- Total distance and estimated travel time (ETA)
 
-* 🗺️ Interactive map using Leaflet
-* 📍 Click-based location selection
-* 🔄 Dynamic route visualization with animated polylines
-* ⚡ Optimized routing using A* / search algorithms
-* 📊 Distance & performance metrics
+### 📍 Navigation
+- Live GPS location tracking
+- Automatic map updates
+- Road geometry generated using OSRM
+- Real-world routing over Cairo's road network
 
-## 🏗️ Tech Stack
+### ⭐ User Features
+- JWT Authentication
+- Save favorite locations
+- Route history
+- Restore previous routes
+- Search locations using OpenStreetMap
 
-### Frontend
+### ⚡ Performance
+- In-memory shortest-path cache
+- MongoDB routing cache
+- MongoDB geo cache
+- Asynchronous history saving
+- Cached road network graph
 
-* React.js
-* Leaflet (react-leaflet)
+---
 
-### Backend
+# 🏗️ Tech Stack
 
-* Django / Django REST Framework
+## Frontend
 
-### Algorithms
+- React
+- Leaflet
+- Fetch API
 
-* A* Search
-* Graph-based pathfinding
+## Backend
+
+- Python
+- Django
+- Django REST Framework
+
+## Database
+
+- MongoDB
+- SQLite
+
+## GIS & Routing
+
+- OpenStreetMap
+- OSMnx
+- NetworkX
+- OSRM
+
+---
+
+# 🧠 Algorithms
+
+## Greedy Algorithm
+
+Visits the nearest destination first.
+
+✔ Fast
+
+✔ Good for many locations
+
+❌ Doesn't always produce the shortest overall route.
+
+---
+
+## Traveling Salesman Problem (TSP)
+
+Computes a near-optimal order for visiting all destinations before constructing the final route.
+
+✔ Better overall routes
+
+✔ Optimized total travel distance
+
+---
+
+# 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/routes/optimize-route/` | Compute optimized route |
+| GET | `/routes/history/` | Retrieve user route history |
+| GET | `/routes/location_path/<id>/` | Retrieve saved route path |
+| GET | `/routes/search-location/` | Search locations |
+| GET | `/routes/favorites/` | Retrieve favorites |
+| POST | `/routes/favorites/add/` | Save favorite |
+| POST | `/routes/favorites/remove/` | Remove favorite |
+| POST | `/api/token/` | Login |
+| POST | `/api/token/refresh/` | Refresh JWT |
+
+---
+
+# 🖥️ Project Architecture
+
+```text
+                React + Leaflet
+                       │
+                  REST API
+                       │
+          Django REST Framework
+                       │
+      ┌───────────┬────────────┐
+      │           │            │
+   MongoDB     SQLite      JWT Auth
+      │
+ Route History
+ Favorites
+ Routing Cache
+ Geo Cache
+      │
+ OpenStreetMap
+      │
+    OSMnx
+      │
+   NetworkX
+      │
+ Route Optimization
+      │
+     OSRM
+      │
+Geometry • ETA • Directions
+```
+
+---
+
 
 ## 📸 Demo
 
 ![alt text](image.png)
 
-## ⚙️ Installation
+- Interactive Map
+- Route Optimization
+- Route History
+- Favorites
+- Live Tracking
 
-### Backend
+---
+
+# ⚙️ Installation
+
+## Backend
 
 ```bash
 cd backend
+
+python -m venv venv
+
+source venv/bin/activate      # Linux/macOS
+venv\Scripts\activate         # Windows
+
 pip install -r requirements.txt
+
+python manage.py migrate
+
 python manage.py runserver
 ```
 
-### Frontend
+---
+
+## Frontend
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
-## 📡 API Example
+---
 
-```json
-POST /routes/optimize-route/
-{
-  "start_location": { "lat": 30.0444, "lon": 31.2357 },
-  "destinations": [
-    { "lat": 30.05, "lon": 31.24 }
-  ]
-}
-```
+# 🚀 Future Improvements
 
-## 💡 Future Improvements
+- 🚦 Traffic visualization with segmented colored roads
+- 🛣️ Alternative route suggestions
+- 🐳 Docker support
+- ☁️ Cloud deployment
+- 🎙️ Voice search
+- 📱 Mobile-responsive UI
+- 🔔 Voice navigation
+- 🚗 Real-time traffic-aware routing
 
-* Add real road routing (Google Maps API / OSRM)
-* Add authentication & user history
-* Improve UI/UX with better controls
-* Mobile responsiveness
+---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
-Rania Raafat
+**Rania Raafat**
+
+Backend Software Engineer
+
+LinkedIn: https://linkedin.com/in/rania-raafat-694b0b261
